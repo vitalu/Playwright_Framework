@@ -15,6 +15,10 @@ dotenv.config();
  */
 export default defineConfig({
   testDir: './tests',
+  /* Timeout per test (ms) */
+  timeout: 30 * 1000,
+  /* Global timeout for the whole test run (ms) */
+  globalTimeout: 10 * 60 * 1000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */

@@ -1,6 +1,8 @@
-export function getUserData() {
-    return {
-        email: process.env.EMAIL!,
-        password: process.env.PASSWORD!,
-    }
+import { User } from "./user.type";
+
+export function getUserData(): User {
+  return {
+    emailAddress: "testpw@gmail.com",
+    password: "Qweqwe123!"
+  }
 }
