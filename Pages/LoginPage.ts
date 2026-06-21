@@ -1,4 +1,5 @@
 import { Page, Locator } from "@playwright/test";
+import { MyAccountPage } from "./MyAccountPage";
 
 export class LoginPage {
   readonly page: Page;
@@ -18,10 +19,12 @@ export class LoginPage {
   async goTo() {
     await this.page.goto("/");
   }
-  async doLogin(emailAddress: string, password: string) {
+  async doLogin(emailAddress: string, password: string):Promise<MyAccountPage> {
     await this.signInLink.click();
     await this.emailAddressInput.fill(emailAddress);
     await this.passwordInput.fill(password);
     await this.signInButton.click();
+    const myAccountPage = new MyAccountPage(this.page)
+    return myAccountPage;
   }
 }
