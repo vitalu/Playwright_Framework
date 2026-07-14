@@ -1,5 +1,6 @@
 import { expect, request, test } from "@playwright/test";
 
+const baseUrl = "https://restful-booker.herokuapp.com";
 let token: string;
 let bookingId: number;
 
@@ -7,7 +8,7 @@ test.describe.serial("Booker CRUD operations", () => {
   // Test setup: obtain an authentication token used for protected endpoints
   test.beforeAll("Get token", async ({ request }) => {
     const response = await request.post(
-      "https://restful-booker.herokuapp.com/auth",
+      `${baseUrl}/auth`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -28,7 +29,7 @@ test.describe.serial("Booker CRUD operations", () => {
   // Create Booking: POST a new booking and store the returned bookingId
   test("Create Booking", async ({ request }) => {
     const response = await request.post(
-      "https://restful-booker.herokuapp.com/booking",
+      `${baseUrl}/booking`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +57,7 @@ test.describe.serial("Booker CRUD operations", () => {
   // Get Booking details: GET the booking by id and verify the response
   test("Get Booking details", async ({ request }) => {
     const getResponse = await request.get(
-      `https://restful-booker.herokuapp.com/booking/${bookingId}`,
+      `${baseUrl}/booking/${bookingId}`,
     );
     await expect(getResponse).toBeOK();
     const responseBody = await getResponse.json();
@@ -66,7 +67,7 @@ test.describe.serial("Booker CRUD operations", () => {
   // Update Booking details: PUT updated booking data using authentication
   test("Update Booking details", async ({ request }) => {
     const updateResponse = await request.put(
-      `https://restful-booker.herokuapp.com/booking/${bookingId}`,
+      `${baseUrl}/booking/${bookingId}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +94,7 @@ test.describe.serial("Booker CRUD operations", () => {
   // Delete Booking: DELETE the booking using the token to clean up
   test("Delete Booking", async ({ request }) => {
     const deleteResponse = await request.delete(
-      `https://restful-booker.herokuapp.com/booking/${bookingId}`,
+      `${baseUrl}/booking/${bookingId}`,
       {
         headers: {
           Cookie: `token=${token}`,
