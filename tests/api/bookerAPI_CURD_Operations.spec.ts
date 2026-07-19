@@ -79,8 +79,8 @@ test.describe.serial("Booker CRUD operations", () => {
           totalprice: 260,
           depositpaid: true,
           bookingdates: {
-            checkin: "2026-06-23",
-            checkout: "2016-06-25",
+            checkin: "2026-06-24",
+            checkout: "2016-06-26",
           },
           additionalneeds: "Dinner",
         },
